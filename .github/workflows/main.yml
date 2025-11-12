@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPO: llpd-docker
-      IMAGE_NAME: reservation-api
+      IMAGE_NAME: cashier-web
       JF_URL: https://${{ vars.JF_URL }}
       DOCKER_BUILD_SUMMARY: false
       DOCKER_BUILD_RECORD_UPLOAD: false
