@@ -37,14 +37,15 @@ jobs:
        JF_URL: https://${{ vars.JF_URL }}
        JF_PROJECT: llpd
 
-    - name: Set JFrog CLI Config
-      run: jf npm-config --global=true --repo-resolve=llpd-npm-dev --repo-deploy=llpd-npm-dev
+    - name: Set CLI Config
+      run: jf pip-config --global=true --repo-resolve=llpd-pypi-dev
 
     - name: build webapp
       run: |
-         jf npm ci
-         jf npm publish
-         npm run build
+         jf pip install .
+         python setup.py sdist bdist_wheel
+         jf rt upload dist/ llpd-pypi-dev/
+         
     - name: Generate build timestamp
       id: date
       run: echo "date=$(date +'%Y-%m-%d-%H-%M-%S')" >> $GITHUB_OUTPUT
