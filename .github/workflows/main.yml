@@ -42,7 +42,7 @@ jobs:
 
     - name: build webapp
       run: |
-         jf pip install .
+         pip install --index-url https://${{ steps.setup-cli.outputs.oidc-user }}:${{ steps.setup-cli.outputs.oidc-token }}@${{ vars.JF_URL }}/artifactory/api/pypi/llpd-pypi-dev/simple --extra-index-url https://pypi.org/simple .
          python setup.py sdist bdist_wheel
          jf rt upload dist/ llpd-pypi-dev/
          
